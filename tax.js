@@ -4,7 +4,7 @@ const ul = document.getElementById("ul");
 const h1 = document.getElementById("h1")
 
 function tax(price) {
-    before_tax_pricce = price * 1.1
+    before_tax_pricce = price / 1.1
     tax_pricce = Math.round(before_tax_pricce)
     return tax_pricce;
 }
