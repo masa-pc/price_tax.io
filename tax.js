@@ -32,11 +32,6 @@ function add() {
         event.preventDefault();
         input.value = "";
     })
-
-    form.addEventListener("touchstart", function(event){
-        event.preventDefault();
-        input.value = "";
-    })
-    
+        
     }
 }
