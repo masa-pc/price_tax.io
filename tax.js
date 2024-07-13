@@ -45,7 +45,7 @@ switchOuter.addEventListener("click", () =>{
     taxSwitch.innerText = taxSituation;
     tax_switch_check = tax_check(tax_switch);
     console.log(tax_switch_check);
-    input.value = "";
+    add();
 })
 
 function tax(price) {
