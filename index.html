@@ -6,25 +6,30 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <title>計算アプリ</title>
     <link rel="stylesheet" href="main.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
 </head>
 <body class="bg-light">
-    <div class="container w-75">
-        <h1 class="text-center text-info my-4">計算アプリ</h1>
-        <form id="form" class="md-4">
-            <input type="number" id="input" class="form-control" placeholder="税抜価格を入力" autocomplete="off">
+    <div class="container">
+        <h1>計算アプリ</h1>
+        <form id="form">
+            <input type="number" id="input" placeholder="税抜価格を入力">
         </form>
-        <h1 class="text-center text-secondary my-4" id="h1"></h1>
-        <a href="https://masa-pc.github.io/shopping.io/" class="text-center text-secondary my-5">買い物リスト</a>
-
-    </div>
-
-    <div class="switch_outer">
-        <div class="toggle_switch">
+        <h1 id="h1"></h1>
+        <a href="https://masa-pc.github.io/shopping.io/">買い物リスト</a>
+    
+        <!-- トグルスイッチと税率設定をまとめる -->
+        <div class="switch_container">
+            <div class="switch_outer">
+                <div class="toggle_switch"></div>
+            </div>
+            <p class="taxP">税率設定<span id="taxSwitch">8%</span></p>
         </div>
     </div>
-    <p class="taxP">税率設定<span id="taxSwitch"></span></p>
+    
 
     
     <script src="tax.js"></script>
 </body>
 </html>
+
