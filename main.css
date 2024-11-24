@@ -1,36 +1,117 @@
-.switch_outer{
-    margin: 50px 50px 10px 50px;
-    width: 100px;
-    height: 50px;
-    background-color: lightgray;
-    border-radius: 50px;
+/* main.css */
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #74ebd5, #acb6e5);
+    color: #333;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container {
+    background: #fff;
+    border-radius: 15px;
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    max-width: 450px;
+    width: 100%;
+    text-align: center;
+    position: relative; /* 子要素の位置調整を可能にする */
+}
+
+h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #74c5eb;
+    margin-bottom: 20px;
+}
+
+input {
+    width: 100%;
+    padding: 12px 15px;
+    font-size: 1.1rem;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+input:focus {
+    border-color: #74ebd5;
+    box-shadow: 0 0 8px rgba(116, 235, 213, 0.5);
+}
+
+a {
+    text-decoration: none;
+    color: #74ebd5;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #50c9c3;
+}
+
+/* トグルスイッチを中央に配置 */
+.switch_container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    gap: 10px; /* テキストとスイッチの間隔 */
+}
+
+.switch_outer {
     position: relative;
-    transition: background-color .2s ease-in-out;
+    width: 60px;
+    height: 30px;
+    background: #ddd;
+    border-radius: 15px;
     cursor: pointer;
+    transition: background 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.switch_outer.active{
-    background-color: rgb(83, 238, 187);
+.switch_outer.active {
+    background: #74ebd5;
 }
 
-.toggle_switch{
-    width: 45px;
-    height: 45px;
-    background-color: white;
-    border-radius: 50%;
+.switch_outer .toggle_switch {
     position: absolute;
-    top: 0;
-    bottom: 0;
+    top: 50%;
     left: 5px;
-    margin: auto;
-    transition: left .3s ease-in-out;
+    width: 22px;
+    height: 22px;
+    background: #fff;
+    border-radius: 50%;
+    transform: translateY(-50%);
+    transition: transform 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-.toggle_switch.active{
-    left: 52px;
+.switch_outer.active .toggle_switch {
+    transform: translate(30px, -50%);
 }
 
-.taxP{
-    margin-left: 60px;
-    font-size: 20px;
+.taxP {
+    font-size: 1rem;
+    color: #777;
+    margin: 0;
+}
+
+.taxP span {
+    font-weight: 600;
+    color: #74ebd5;
+}
+
+/* 結果表示用 */
+#h1 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #555;
+    margin-top: 15px;
 }
