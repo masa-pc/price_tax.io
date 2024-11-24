@@ -76,7 +76,7 @@ function add() {
     li.innerText = todoText;
     li.classList.add("list-group-item");
 
-    h1.innerText = h1_tax_price + "円";
+    h1.innerText = "税抜" + h1_tax_price + "円";
 
     form.addEventListener("click", function(event){
         event.preventDefault();
