@@ -2,6 +2,7 @@ const form = document.getElementById("form");
 const input = document.getElementById("input");
 const h1 = document.getElementById("h1");
 const taxSwitch = document.getElementById("taxSwitch");
+console.log("OK");
 
 let tax_switch = 0;  // トグルカウント
 let tax_switch_check = 0; // 0: 8%, 1: 10%
@@ -64,3 +65,4 @@ function calculate() {
 
 // 入力時にリアルタイム計算
 input.addEventListener("input", calculate);
+
