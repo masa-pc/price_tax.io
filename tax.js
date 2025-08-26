@@ -1,123 +1,66 @@
-/* ===== ベース ===== */
-body {
-    font-family: 'Poppins', sans-serif;
-    background: linear-gradient(135deg, #a1c4fd, #c2e9fb); /* 爽やかなブルー系 */
-    margin: 0;
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #333;
+const form = document.getElementById("form");
+const input = document.getElementById("input");
+const h1 = document.getElementById("h1");
+const taxSwitch = document.getElementById("taxSwitch");
+
+let tax_switch = 0;  // トグルカウント
+let tax_switch_check = 0; // 0: 8%, 1: 10%
+
+//フォーム送信無効化
+form.addEventListener("submit", function(event) {
+    event.preventDefault();
+});
+
+// 初期表示
+taxSwitch.innerText = "8%";
+let tax_Judgment = 1.08;
+
+// 税率表示用関数
+function tax_check_display(num) {
+    return num % 2 === 0 ? "8%" : "10%";
 }
 
-/* ===== コンテナ ===== */
-.container {
-    background: #fff;
-    border-radius: 16px;
-    padding: 35px 25px;
-    max-width: 420px;
-    width: 90%;
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    animation: fadeIn 0.8s ease;
+// 税率判定用関数
+function tax_check(num) {
+    return num % 2 === 0 ? 0 : 1;
 }
 
-/* ===== タイトル ===== */
-.container h1:first-of-type {
-    font-size: 1.6rem;
-    font-weight: 700;
-    color: #2c3e50;
-    margin-bottom: 18px;
+// トグルスイッチ要素
+const switchOuter = document.querySelector(".switch_outer");
+const toggleSwitch = document.querySelector(".toggle_switch");
+
+// トグルクリックイベント
+switchOuter.addEventListener("click", () => {
+    switchOuter.classList.toggle("active");
+    toggleSwitch.classList.toggle("active");
+
+    tax_switch++;
+    taxSwitch.innerText = tax_check_display(tax_switch);
+    tax_switch_check = tax_check(tax_switch);
+
+    calculate(); // 税率を変えたら再計算
+});
+
+// 税計算処理
+function calculate() {
+    let price = Number(input.value);
+
+    if (isNaN(price) || price <= 0) {
+        h1.innerText = "金額を入力してください";
+        return;
+    }
+
+    // 税率設定
+    tax_Judgment = (tax_switch_check === 0) ? 1.08 : 1.10;
+
+    // 計算
+    let before_tax = Math.round(price / tax_Judgment); // 税抜
+    let tax_amount = price - before_tax;              // 消費税額
+    let after_tax = price;                            // 税込（入力値）
+
+    // 表示
+    h1.innerText = `税込 ${after_tax}円\n税抜 ${before_tax}円（消費税 ${tax_amount}円）`;
 }
 
-/* ===== 入力欄 ===== */
-#input {
-    width: 100%;
-    padding: 12px 15px;
-    font-size: 1rem;
-    border: 2px solid #a1c4fd;
-    border-radius: 10px;
-    outline: none;
-    transition: 0.3s ease;
-}
-#input:focus {
-    border-color: #4a6cf7;
-    box-shadow: 0 0 6px rgba(74, 108, 247, 0.3);
-}
-
-/* ===== 計算結果 ===== */
-#h1 {
-    margin-top: 22px;
-    font-size: 1.25rem;
-    font-weight: 600;
-    background: linear-gradient(135deg, #ffecd2, #fcb69f); /* オレンジ系グラデ */
-    border-radius: 12px;
-    padding: 14px;
-    color: #2c3e50;
-    line-height: 1.6;
-    white-space: pre-line; /* 改行反映 */
-    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-}
-
-/* ===== リンク ===== */
-a {
-    display: inline-block;
-    margin-top: 18px;
-    font-weight: 600;
-    color: #4a6cf7;
-    text-decoration: none;
-    transition: 0.2s ease;
-}
-a:hover {
-    color: #2c3e50;
-    text-decoration: underline;
-}
-
-/* ===== 税率スイッチ ===== */
-.switch_container {
-    margin-top: 25px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-}
-
-.switch_outer {
-    width: 64px;
-    height: 32px;
-    border-radius: 50px;
-    background: #ddd;
-    position: relative;
-    cursor: pointer;
-    transition: background 0.3s ease;
-}
-.switch_outer.active {
-    background: linear-gradient(135deg, #84fab0, #8fd3f4); /* 緑～水色グラデ */
-}
-
-.toggle_switch {
-    width: 26px;
-    height: 26px;
-    background: #fff;
-    border-radius: 50%;
-    position: absolute;
-    top: 3px;
-    left: 3px;
-    transition: transform 0.3s ease;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-}
-.switch_outer.active .toggle_switch {
-    transform: translateX(32px);
-}
-
-.taxP {
-    font-size: 0.95rem;
-    font-weight: 600;
-    color: #2c3e50;
-}
-
-/* ===== フェードイン ===== */
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(15px); }
-    to { opacity: 1; transform: translateY(0); }
-}
+// 入力時にリアルタイム計算
+input.addEventListener("input", calculate);
