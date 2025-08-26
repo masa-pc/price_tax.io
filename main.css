@@ -1,117 +1,123 @@
-/* main.css */
+/* ===== ベース ===== */
 body {
     font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #a1c4fd, #c2e9fb); /* 爽やかなブルー系 */
     margin: 0;
-    padding: 0;
-    background: linear-gradient(135deg, #74ebd5, #acb6e5);
-    color: #333;
     min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
+    color: #333;
 }
 
+/* ===== コンテナ ===== */
 .container {
     background: #fff;
-    border-radius: 15px;
-    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
-    padding: 30px;
-    max-width: 450px;
-    width: 100%;
+    border-radius: 16px;
+    padding: 35px 25px;
+    max-width: 420px;
+    width: 90%;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
     text-align: center;
-    position: relative; /* 子要素の位置調整を可能にする */
+    animation: fadeIn 0.8s ease;
 }
 
-h1 {
-    font-size: 2.5rem;
+/* ===== タイトル ===== */
+.container h1:first-of-type {
+    font-size: 1.6rem;
     font-weight: 700;
-    color: #74c5eb;
-    margin-bottom: 20px;
+    color: #2c3e50;
+    margin-bottom: 18px;
 }
 
-input {
+/* ===== 入力欄 ===== */
+#input {
     width: 100%;
     padding: 12px 15px;
-    font-size: 1.1rem;
-    border: 2px solid #ddd;
-    border-radius: 8px;
-    margin-bottom: 20px;
+    font-size: 1rem;
+    border: 2px solid #a1c4fd;
+    border-radius: 10px;
     outline: none;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    transition: 0.3s ease;
+}
+#input:focus {
+    border-color: #4a6cf7;
+    box-shadow: 0 0 6px rgba(74, 108, 247, 0.3);
 }
 
-input:focus {
-    border-color: #74ebd5;
-    box-shadow: 0 0 8px rgba(116, 235, 213, 0.5);
-}
-
-a {
-    text-decoration: none;
-    color: #74ebd5;
+/* ===== 計算結果 ===== */
+#h1 {
+    margin-top: 22px;
+    font-size: 1.25rem;
     font-weight: 600;
-    transition: color 0.3s ease;
+    background: linear-gradient(135deg, #ffecd2, #fcb69f); /* オレンジ系グラデ */
+    border-radius: 12px;
+    padding: 14px;
+    color: #2c3e50;
+    line-height: 1.6;
+    white-space: pre-line; /* 改行反映 */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
 }
 
+/* ===== リンク ===== */
+a {
+    display: inline-block;
+    margin-top: 18px;
+    font-weight: 600;
+    color: #4a6cf7;
+    text-decoration: none;
+    transition: 0.2s ease;
+}
 a:hover {
-    color: #50c9c3;
+    color: #2c3e50;
+    text-decoration: underline;
 }
 
-/* トグルスイッチを中央に配置 */
+/* ===== 税率スイッチ ===== */
 .switch_container {
+    margin-top: 25px;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 20px;
-    gap: 10px; /* テキストとスイッチの間隔 */
+    gap: 12px;
 }
 
 .switch_outer {
-    position: relative;
-    width: 60px;
-    height: 30px;
+    width: 64px;
+    height: 32px;
+    border-radius: 50px;
     background: #ddd;
-    border-radius: 15px;
+    position: relative;
     cursor: pointer;
     transition: background 0.3s ease;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
-
 .switch_outer.active {
-    background: #74ebd5;
+    background: linear-gradient(135deg, #84fab0, #8fd3f4); /* 緑～水色グラデ */
 }
 
-.switch_outer .toggle_switch {
-    position: absolute;
-    top: 50%;
-    left: 5px;
-    width: 22px;
-    height: 22px;
+.toggle_switch {
+    width: 26px;
+    height: 26px;
     background: #fff;
     border-radius: 50%;
-    transform: translateY(-50%);
+    position: absolute;
+    top: 3px;
+    left: 3px;
     transition: transform 0.3s ease;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
 }
-
 .switch_outer.active .toggle_switch {
-    transform: translate(30px, -50%);
+    transform: translateX(32px);
 }
 
 .taxP {
-    font-size: 1rem;
-    color: #777;
-    margin: 0;
-}
-
-.taxP span {
+    font-size: 0.95rem;
     font-weight: 600;
-    color: #74ebd5;
+    color: #2c3e50;
 }
 
-/* 結果表示用 */
-#h1 {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: #555;
-    margin-top: 15px;
+/* ===== フェードイン ===== */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
 }
